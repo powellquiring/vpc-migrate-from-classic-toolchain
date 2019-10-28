@@ -15,9 +15,9 @@
   "form": [
     {
       "type": "string",
-      "default": "default strin gma",
       "readonly": false,
       "title": "SSH Private Key",
+      "description": "SShdefault will be zzzzz",
       "key": "ssh-private-key"
     }
   ]
