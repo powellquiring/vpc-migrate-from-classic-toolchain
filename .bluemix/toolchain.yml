@@ -23,18 +23,18 @@ services:
   # Pipelines
   build:
     service_id: pipeline
-#    parameters:
-#      services:
-#        - repo
+    parameters:
+      services:
+        - repo
 #      name: "{{form.pipeline.parameters.app-name}}"
-#      ui-pipeline: true
-#      configuration:
-#        content:
-#          $text: pipeline.yml
+      ui-pipeline: true
+      configuration:
+        content:
+          $text: pipeline.yml
 #        env:
 #          REPO: repo
 #          API_KEY: "{{form.pipeline.parameters.api-key}}"
-#        execute: true
+        execute: false
 
 #Deployment
 #form:
