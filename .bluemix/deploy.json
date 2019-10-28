@@ -10,13 +10,12 @@
     }
   },
   "required": [
-    "ssh-private-key"
   ],
   "form": [
     {
       "type": "string",
       "readonly": false,
-      "title": "SSH Private Key",
+      "title": "SSH Private Key (default zzz)",
       "description": "SShdefault will be zzzzz",
       "key": "ssh-private-key"
     }

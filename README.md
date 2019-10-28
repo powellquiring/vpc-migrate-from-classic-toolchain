@@ -1,6 +1,6 @@
 ## IBM Cloud Toolchain for VPC
 
-m05
+m06
 
    1. Click the **Create Toolchain** button to get started.
 
