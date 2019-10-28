@@ -31,8 +31,8 @@ services:
       configuration:
         content:
           $text: pipeline.yml
-#        env:
-#          REPO: repo
+        env:
+          REPO: repo
 #          API_KEY: "{{form.pipeline.parameters.api-key}}"
         execute: false
 

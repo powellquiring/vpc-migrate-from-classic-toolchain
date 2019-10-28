@@ -8,6 +8,10 @@ properties: []
 stages:
 - name: MyStage
   worker: Worker[name=null,type=null,id=null]
+  inputs:
+  - type: git
+    branch: master
+    service: ${REPO}
   triggers:
   - type: stage
   permission:
