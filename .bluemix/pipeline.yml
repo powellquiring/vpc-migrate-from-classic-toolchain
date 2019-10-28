@@ -1,59 +1,78 @@
 ---
-defaultBaseImageVersion: latest
-private_worker:
-  workerType: public
-  workerId: public
-  workerName: ''
-properties: []
 stages:
-- name: one
-  worker: Worker[name=null,type=null,id=null]
+- name: App Build Stage
   inputs:
-  - url: https://github.com/powellquiring/vpc-tutorials.git
-    type: git
-    branch: experimental
-    dir_name: null
-  triggers:
   - type: git
-    events: '{"push":true,"pull_request":false,"pull_request_closed":false}'
-  permission:
-    execute: TOOLCHAIN_ADMINS
+    branch: master
+    service: ${REPO}
+  properties:
+  - name: TF_VAR_ibmcloud_api_key
+    value: "${API_KEY}"
+    type: secure
+  - name: TF_VAR_vpc_region
+    value: "${VPC_REGION}"
+    type: text
+  - name: TF_VAR_vpc_ssh_keys
+    value: "${VPC_SSH_KEYS}"
+    type: text
+  - name: TF_VAR_vpc_resource_group
+    value: "${VPC_RESOURCE_GROUP}"
+    type: text     
+  - name: TF_VAR_vpc_resources_prefix
+    value: "${VPC_RESOURCES_PREFIX}"
+    type: text
+  - name: PRIVATE_KEY
+    value: "${PRIVATE_KEY}"
+    type: secure     
   jobs:
-  - name: Build
+  - name: App Build
     type: builder
-    curatedDockerImage: default
     artifact_dir: ''
-- name: oneb
-  worker: Worker[name=null,type=null,id=null]
-  inputs:
-  - url: https://github.com/powellquiring/vpc-tutorials.git
-    type: git
-    branch: experimental
-    dir_name: null
-  triggers:
-  - type: git
-    events: '{"push":true,"pull_request":false,"pull_request_closed":false}'
-  permission:
-    execute: TOOLCHAIN_ADMINS
-- name: MyStage
-  worker: Worker[name=null,type=null,id=null]
+    build_type: shell
+    script: |
+      #!/bin/bash
+      set -eo pipefail
+      bash scripts/build.sh
+- name: VPC Deploy Stage
   inputs:
   - type: job
-    stage: one
-    job: Build
-    dir_name: null
+    stage: App Build Stage
+    job: App Build
   triggers:
   - type: stage
-  permission:
-    execute: TOOLCHAIN_ADMINS
+  properties:
+  - name: buildprops
+    value: build.properties
+    type: file  
   jobs:
-  - name: Build
+  - name: Apply_Deploy_Test
     type: builder
-    curatedDockerImage: default
     artifact_dir: ''
-hooks:
-- enabled: true
-  label: null
-  ssl_enabled: true
-  url: https://devops-api.us-south.devops.cloud.ibm.com/v1/messaging/webhook/publish
-
+    build_type: customimage
+    script: |-
+      #!/bin/bash
+      set -eo pipefail
+      bash scripts/apply_deploy_test.sh
+    docker_image: ibmterraform/terraform-provider-ibm-docker:v0.18.0
+- name: VPC Clean-up Stage
+  inputs:
+  - type: job
+    stage: VPC Deploy Stage
+    job: Apply_Deploy_Test
+  triggers:
+  - type: stage
+    enabled: false
+  properties:
+  - name: buildprops
+    value: build.properties
+    type: file  
+  jobs:
+  - name: Destroy
+    type: builder
+    artifact_dir: ''
+    build_type: customimage
+    script: |-
+      #!/bin/bash
+      set -eo pipefail
+      bash scripts/destroy.sh
+    docker_image: ibmterraform/terraform-provider-ibm-docker:v0.18.0
