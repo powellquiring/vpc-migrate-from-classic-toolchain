@@ -6,42 +6,8 @@ private_worker:
   workerName: ''
 properties: []
 stages:
-- name: one
-  worker: Worker[name=null,type=null,id=null]
-  inputs:
-  - url: https://github.com/powellquiring/vpc-tutorials.git
-    type: git
-    branch: experimental
-    dir_name: null
-  triggers:
-  - type: git
-    events: '{"push":true,"pull_request":false,"pull_request_closed":false}'
-  permission:
-    execute: TOOLCHAIN_ADMINS
-  jobs:
-  - name: Build
-    type: builder
-    curatedDockerImage: default
-    artifact_dir: ''
-- name: oneb
-  worker: Worker[name=null,type=null,id=null]
-  inputs:
-  - url: https://github.com/powellquiring/vpc-tutorials.git
-    type: git
-    branch: experimental
-    dir_name: null
-  triggers:
-  - type: git
-    events: '{"push":true,"pull_request":false,"pull_request_closed":false}'
-  permission:
-    execute: TOOLCHAIN_ADMINS
 - name: MyStage
   worker: Worker[name=null,type=null,id=null]
-  inputs:
-  - type: job
-    stage: one
-    job: Build
-    dir_name: null
   triggers:
   - type: stage
   permission:

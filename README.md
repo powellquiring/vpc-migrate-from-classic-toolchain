@@ -10,8 +10,6 @@ This is a companion repository to a blog post that is available here: https://ib
    - 2 virtual server instances (VSI): 1 for running the sample app and 1 bastion host
    - scale up to 3 VSIs for running the sample app (optional). 
 
-- The sample application runs on [WebSphere Liberty V19.0.0.10 with Java EE 8 Web Profile](https://developer.ibm.com/wasdev/downloads/#asset/runtimes-wlp-webProfile8) with a JVM heap size set to a maximum of 512M. The WebSphere Liberty product is licensed for development, and limited production use. The full license terms can be viewed [here](https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/wasdev/license/base_ilan/ilan/19.0.0.10/lafiles/en.html).
-
 - Install the IBM Cloud CLI by [following these steps](https://cloud.ibm.com/docs/cli?topic=cloud-cli-install-ibmcloud-cli). 
 
 - Install the *Infrastructure Service* plugin used for VPC.  
@@ -22,13 +20,6 @@ This is a companion repository to a blog post that is available here: https://ib
 - Your IBM Cloud user account needs permissions to create and manage VPC resources. See the list of required permissions for [VPC for Gen 1](/docs/vpc-on-classic?topic=vpc-on-classic-managing-user-permissions-for-vpc-resources). 
 
 - This toolchain requires an API Key that will run with your permissions. During the toolchain creation, you will be prompted to either create a new API key for use by the toolchain or paste an existing one.  An API key is a unique code that is passed to an API to identify the application or user that is calling it. To prevent malicious use of an API, you can use API keys to track and control how that API is used. For more information about API keys, see [Understanding API keys](https://cloud.ibm.com/docs/iam?topic=iam-manapikey).
-
-- The toolchain and associated scripts require at least one SSH key to access the virtual servers - and you may as well. If you don't have an SSH key, you can create one by following the steps below, please note that IBM Cloud VPC requires a key size of 2048 or 4096.   
-
-   - Create the SSH Key on your local system
-   ```sh
-      ssh-keygen -t rsa -P "" -C "vpc.toolchain@noreply.com" -f ~/.ssh/id_rsa_vpc_tc -b 4096
-   ```
 
 - There are minimal steps that need to be performed on your local machine, however these are written to work in a Bash shell.  If you are using a Windows OS, make sure to install [Git for Windows](https://gitforwindows.org/) as it includes a Bash shell. 
 
@@ -82,8 +73,6 @@ This IBM Cloud Toolchain for VPC provides a starting point for creating applicat
    - Create a Virtual Private Cloud in a given region.
    - Create One (1) to three (3) Virtual server instances across three (3) IBM Cloud VPC availability zones and One (1) load balancer.  
    - Deploy a very simple web application running on top of [WebSphere Liberty](https://developer.ibm.com/wasdev/).
-
-   ![](./docs/diagrams/vpc-mzr-liberty-cicd.png)
 
  
    1. Click the **Create Toolchain** button to get started.
