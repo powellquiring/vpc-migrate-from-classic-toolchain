@@ -14,7 +14,8 @@
   ],
   "form": [
     {
-      "type": "password",
+      "type": "string",
+      "default": "default strin gma",
       "readonly": false,
       "title": "SSH Private Key",
       "key": "ssh-private-key"
