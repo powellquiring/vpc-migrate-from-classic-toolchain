@@ -4,7 +4,13 @@ private_worker:
   workerType: public
   workerId: public
   workerName: ''
-properties: []
+
+properties:
+- name: PREFIX
+  value: a99
+  type: text
+  
+#          VPC_REGION: "{{form.pipeline.parameters.vpc-region}}"
 stages:
 - name: MyStage
   worker: Worker[name=null,type=null,id=null]

@@ -33,7 +33,6 @@ services:
           $text: pipeline.yml
         env:
           REPO: repo
-          VPC_REGION: "{{form.pipeline.parameters.vpc-region}}"
         execute: false
 
 #          API_KEY: "{{form.pipeline.parameters.api-key}}"
