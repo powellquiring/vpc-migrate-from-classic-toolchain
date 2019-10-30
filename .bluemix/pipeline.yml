@@ -6,6 +6,9 @@ private_worker:
   workerName: ''
 
 properties:
+- name: COS_SERVICE_NAME
+  value: "${PREFIX}-cos"
+  type: text
 - name: AATOOLCHAINNAME
   value: "{{toolchain.name}}"
   type: text
