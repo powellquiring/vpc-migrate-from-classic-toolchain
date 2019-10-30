@@ -30,6 +30,9 @@ properties:
 - name: COS_BUCKET_NAME
   value: "${PREFIX}-images"
   type: text
+- name: IBMCLOUD_API_KEY
+  value: "${API_KEY}"
+  type: text
 
 stages:
 - name: MyStage
@@ -47,6 +50,7 @@ stages:
     type: builder
     curatedDockerImage: default
     artifact_dir: ''
+
 hooks:
 - enabled: true
   label: null

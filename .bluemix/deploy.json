@@ -13,11 +13,10 @@
   ],
   "form": [
     {
-      "type": "string",
+      "type": "password",
       "readonly": false,
-      "title": "SSH Private Key (default zzz)",
-      "description": "SShdefault will be zzzzz",
-      "key": "ssh-private-key"
+      "title": "IBM Cloud API Key",
+      "key": "api-key"
     }
   ]
 }

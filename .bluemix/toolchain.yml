@@ -16,7 +16,7 @@ services:
     parameters:
       source_repo_url: "https://github.com/powellquiring/vpc-tutorials"
       repo_name: "{{toolchain.name}}"
-      type: exist
+      type: link
       has_issues: false
       enable_traceability: false
 
@@ -33,9 +33,9 @@ services:
           $text: pipeline.yml
         env:
           REPO: repo
+          API_KEY: "{{form.pipeline.parameters.api-key}}"
         execute: false
 
-#          API_KEY: "{{form.pipeline.parameters.api-key}}"
 #          PREFIX: "{{toolchain.name}}"
 
 #Deployment
