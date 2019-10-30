@@ -16,7 +16,7 @@ services:
     parameters:
       source_repo_url: "https://github.com/powellquiring/vpc-tutorials"
       repo_name: "{{toolchain.name}}"
-      type: existing
+      type: exist
       has_issues: false
       enable_traceability: false
 
@@ -32,10 +32,12 @@ services:
         content:
           $text: pipeline.yml
         env:
-#          API_KEY: "{{form.pipeline.parameters.api-key}}"
           REPO: repo
-          PREFIX: "{{toolchain.name}}"
+          VPC_REGION: "{{form.pipeline.parameters.vpc-region}}"
         execute: false
+
+#          API_KEY: "{{form.pipeline.parameters.api-key}}"
+#          PREFIX: "{{toolchain.name}}"
 
 #Deployment
 form:
@@ -45,7 +47,7 @@ form:
     parameters:
 #      app-name: "{{app-name}}"
 #      toolchain-name: "{{toolchain-name}}"
-#      vpc-region: "{{vpc-region}}"
+      vpc-region: "{{vpc-region}}"
 #      vpc-ssh-key: "{{vpc-ssh-key}}"
 #      target-resource-group: 'default'
       ssh-private-key: "{{ssh-private-key}}"
