@@ -6,16 +6,31 @@ private_worker:
   workerName: ''
 
 properties:
+- name: PREFIX
+  value: "{{toolchain.name}}"
+  type: text
+- name: VPC_IMAGE_NAME
+  value: "centos-7-plus"
+  type: text
+- name: DATACENTER
+  value: "dal13"
+  type: text
+- name: RESOURCE_GROUP_NAME
+  value: "default"
+  type: text
 - name: COS_SERVICE_NAME
   value: "${PREFIX}-cos"
   type: text
-- name: AATOOLCHAINNAME
-  value: "{{toolchain.name}}"
+- name: COS_SERVICE_PLAN
+  value: "standard"
   type: text
-- name: PREFIX
-  value: a100
+- name: COS_REGION
+  value: "us-south"
   type: text
-  
+- name: COS_BUCKET_NAME
+  value: "${PREFIX}-images"
+  type: text
+
 stages:
 - name: MyStage
   worker: Worker[name=null,type=null,id=null]
