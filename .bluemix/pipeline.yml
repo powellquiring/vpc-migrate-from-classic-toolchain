@@ -6,11 +6,13 @@ private_worker:
   workerName: ''
 
 properties:
+- name: AATOOLCHAINNAME
+  value: "{{toolchain.name}}"
+  type: text
 - name: PREFIX
-  value: a99
+  value: a100
   type: text
   
-#          VPC_REGION: "{{form.pipeline.parameters.vpc-region}}"
 stages:
 - name: MyStage
   worker: Worker[name=null,type=null,id=null]
