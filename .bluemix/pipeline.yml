@@ -44,7 +44,7 @@ properties:
   type: secure
 
 stages:
-- name: MyStage
+- name: '012'
   inputs:
   - type: git
     branch: master
@@ -54,16 +54,44 @@ stages:
   permission:
     execute: TOOLCHAIN_ADMINS
   jobs:
+  - name: '012'
+    type: builder
+    curatedDockerImage: default
+    artifact_dir: ''
+    build_type: customimage
+    script: |+
+      #!/bin/bash
+      env
+      ls
+      ./vpc-migrate-from-classic/pipeline_build.sh \
+        000-prereqs.sh \
+        010-prepare-cos.sh \
+        020-create-classic-vm.sh
+    docker_image: l2fprod/bxshell:latest
+- name: '3'
+  worker: null
+  inputs:
+  - type: job
+    stage: '3'
+    job: Build
+    dir_name: null
+  triggers:
+  - type: stage
+  permission:
+    execute: TOOLCHAIN_ADMINS
+  jobs:
   - name: Build
     type: builder
     curatedDockerImage: default
     artifact_dir: ''
-    build_type: shell
-    script: |-
+    build_type: customimage
+    script: |+
       #!/bin/bash
       env
       ls
-
+      ./vpc-migrate-from-classic/pipeline_build.sh \
+        030-capture-classic-to-cos.sh
+    docker_image: l2fprod/bxshell:latest
 #hooks:
 #- enabled: true
 #  label: null
