@@ -1,9 +1,9 @@
 ---
 defaultBaseImageVersion: latest
-private_worker:
-  workerType: public
-  workerId: public
-  workerName: ''
+#private_worker:
+#  workerType: public
+#  workerId: public
+#  workerName: ''
 
 properties:
 - name: PREFIX
