@@ -44,10 +44,10 @@ form:
     schema:
       $ref: deploy.json
     parameters:
+      ssh-private-key: "{{ssh-private-key}}"
 #      app-name: "{{app-name}}"
 #      toolchain-name: "{{toolchain-name}}"
-      vpc-region: "{{vpc-region}}"
+#      vpc-region: "{{vpc-region}}"
 #      vpc-ssh-key: "{{vpc-ssh-key}}"
 #      target-resource-group: 'default'
-      ssh-private-key: "{{ssh-private-key}}"
 #      vpc-resources-prefix: "{{vpc-resources-prefix}}"

@@ -21,6 +21,10 @@
       "readonly": false,
       "title": "IBM Cloud API Key",
       "key": "api-key"
+    },
+    "ssh-private-key": {
+      "description": "SSH Private Key",
+      "type": "password"
     }
   ]
 }
