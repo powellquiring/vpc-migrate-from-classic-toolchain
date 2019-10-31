@@ -34,6 +34,7 @@ services:
         env:
           REPO: repo
           API_KEY: "{{form.pipeline.parameters.api-key}}"
+          SOFTLAYER_USERNAME: "{{form.pipeline.parameters.softlayer-username}}"
         execute: false
 
 #          PREFIX: "{{toolchain.name}}"
@@ -44,7 +45,7 @@ form:
     schema:
       $ref: deploy.json
     parameters:
-      ssh-private-key: "{{ssh-private-key}}"
+#      softlayer-username: "{{softlayer-username}}"
 #      app-name: "{{app-name}}"
 #      toolchain-name: "{{toolchain-name}}"
 #      vpc-region: "{{vpc-region}}"

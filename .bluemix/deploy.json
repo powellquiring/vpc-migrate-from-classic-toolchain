@@ -1,30 +1,29 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Sample Deploy Stage",
-  "longDescription": "The Delivery Pipeline automates continuous deployment.",
+  "title": "ZZZZZZ",
+  "longDescription": "Required secrets.  Checkout the pipeline configuration environment for more optional configuration.",
   "type": "object",
   "properties": {
     "api-key": {
-      "description": "IBM Cloud API keys contain permissions that grant access to organizations, spaces, and Kubernetes clusters. You can obtain your API key with 'ibmcloud iam api-key-create' or via the console at https://cloud.ibm.com/iam/#/apikeys by clicking **Create API key** (Each API key only can be viewed once).",
+      "description": "IBM Cloud API keys reference permissions that grant access to cloud resources. You can obtain your API key with 'ibmcloud iam api-key-create' or via the console at https://cloud.ibm.com/iam/#/apikeys by clicking **IBM Cloud API keys**.",
       "type": "string"
     },
-    "ssh-private-key": {
-      "description": "SSH Private Key",
+    "softlayer-username": {
+      "description": "Classic infrastructure API user name.  Located via the console at https://cloud.ibm.com/iam/apikeys.  Locate the **Classic infrastructure API key** and click **Details** in the  ... drop down.",
       "type": "password"
     }
   },
-  "required": [
-  ],
+  "required": ["api-key", "softlayer-username" ],
   "form": [
     {
+      "key": "api-key",
       "type": "password",
       "readonly": false,
-      "title": "IBM Cloud API Key",
-      "key": "api-key"
+      "title": "IBM Cloud API Key"
     },
-    "ssh-private-key": {
-      "description": "SSH Private Key",
-      "type": "password"
+    {
+      "key": "softlayer-username",
+      "type": "string"
     }
   ]
 }
