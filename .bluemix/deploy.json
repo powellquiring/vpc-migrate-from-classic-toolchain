@@ -5,7 +5,7 @@
   "type": "object",
   "properties": {
     "api-key": {
-      "description": "IBM Cloud API keys reference permissions that grant access to cloud resources. You can obtain your API key with 'ibmcloud iam api-key-create' or via the console at https://cloud.ibm.com/iam/#/apikeys by clicking **IBM Cloud API keys**.",
+      "description": "IBM Cloud API keys reference permissions that grant access to cloud resources. You can obtain your API key with 'ibmcloud iam api-key-create' or via the console at https://cloud.ibm.com/iam/apikeys by clicking **Create an IBM Cloud API key**.",
       "type": "string"
     },
     "softlayer-username": {
@@ -23,7 +23,8 @@
     },
     {
       "key": "softlayer-username",
-      "type": "string"
+      "type": "string",
+      "title": "Classic infrastructure API user name"
     }
   ]
 }
