@@ -15,6 +15,9 @@ properties:
 - name: DATACENTER
   value: "dal13"
   type: text
+- name: REGION
+  value: "us-south"
+  type: text
 - name: RESOURCE_GROUP_NAME
   value: "default"
   type: text
@@ -25,7 +28,7 @@ properties:
   value: "standard"
   type: text
 - name: COS_REGION
-  value: "us-south"
+  value: "${REGION}"
   type: text
 - name: COS_BUCKET_NAME
   value: "${PREFIX}-images"
