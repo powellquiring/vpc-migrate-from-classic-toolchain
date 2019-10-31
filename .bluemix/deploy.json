@@ -32,8 +32,8 @@
     },
     {
       "key": "softlayer-api-key",
-      "type": "string",
-      "title": "Classic infrastructure API user name"
+      "type": "password",
+      "title": "Classic infrastructure API key"
     }
   ]
 }
