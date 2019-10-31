@@ -11,6 +11,10 @@
     "softlayer-username": {
       "description": "Classic infrastructure API user name.  Located via the console at https://cloud.ibm.com/iam/apikeys.  Locate the **Classic infrastructure API key** and click **Details** in the  ... drop down.",
       "type": "password"
+    },
+    "softlayer-api-key": {
+      "description": "Classic infrastructure API key.  Located via the console at https://cloud.ibm.com/iam/apikeys.  Locate the **Classic infrastructure API key** and click **Details** in the  ... drop down.",
+      "type": "password"
     }
   },
   "required": ["api-key", "softlayer-username" ],
@@ -23,6 +27,11 @@
     },
     {
       "key": "softlayer-username",
+      "type": "string",
+      "title": "Classic infrastructure API user name"
+    },
+    {
+      "key": "softlayer-api-key",
       "type": "string",
       "title": "Classic infrastructure API user name"
     }

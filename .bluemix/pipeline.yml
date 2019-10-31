@@ -1,5 +1,5 @@
 ---
-defaultBaseImageVersion: latest
+#defaultBaseImageVersion: latest
 #private_worker:
 #  workerType: public
 #  workerId: public
@@ -56,10 +56,15 @@ stages:
     type: builder
     curatedDockerImage: default
     artifact_dir: ''
+    build_type: shell
+    script: |-
+      #!/bin/bash
+      env
+      ls
 
-hooks:
-- enabled: true
-  label: null
-  ssl_enabled: true
-  url: https://devops-api.us-south.devops.cloud.ibm.com/v1/messaging/webhook/publish
+#hooks:
+#- enabled: true
+#  label: null
+#  ssl_enabled: true
+#  url: https://devops-api.us-south.devops.cloud.ibm.com/v1/messaging/webhook/publish
 

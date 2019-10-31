@@ -35,6 +35,7 @@ services:
           REPO: repo
           API_KEY: "{{form.pipeline.parameters.api-key}}"
           SOFTLAYER_USERNAME: "{{form.pipeline.parameters.softlayer-username}}"
+          SOFTLAYER_API_KEY: "{{form.pipeline.parameters.softlayer-api-key}}"
         execute: false
 
 #          PREFIX: "{{toolchain.name}}"
