@@ -45,7 +45,7 @@ form:
     schema:
       $ref: deploy.json
     parameters:
-#      softlayer-username: "{{softlayer-username}}"
+      softlayer-username: "joe"
 #      app-name: "{{app-name}}"
 #      toolchain-name: "{{toolchain-name}}"
 #      vpc-region: "{{vpc-region}}"
