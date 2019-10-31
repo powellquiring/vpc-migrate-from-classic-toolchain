@@ -32,7 +32,13 @@ properties:
   type: text
 - name: IBMCLOUD_API_KEY
   value: "${API_KEY}"
+  type: secure
+- name: SOFTLAYER_USERNAME
+  value: "${SOFTLAYER_USERNAME}"
   type: text
+- name: SOFTLAYER_API_KEY
+  value: "${SOFTLAYER_API_KEY}"
+  type: secure
 
 stages:
 - name: MyStage
