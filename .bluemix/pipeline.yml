@@ -54,7 +54,7 @@ stages:
   permission:
     execute: TOOLCHAIN_ADMINS
   jobs:
-  - name: '012'
+  - name: '012build'
     type: builder
     curatedDockerImage: default
     artifact_dir: ''
@@ -68,7 +68,33 @@ stages:
         010-prepare-cos.sh \
         020-create-classic-vm.sh
     docker_image: l2fprod/bxshell:latest
+
 - name: '3'
+  worker: null
+  inputs:
+  - type: job
+    stage: '012'
+    job: Build
+    dir_name: null
+  triggers:
+  - type: stage
+  permission:
+    execute: TOOLCHAIN_ADMINS
+  jobs:
+  - name: 3build
+    type: builder
+    curatedDockerImage: default
+    artifact_dir: ''
+    build_type: customimage
+    script: |+
+      #!/bin/bash
+      env
+      ls
+      ./vpc-migrate-from-classic/pipeline_build.sh \
+        030-capture-classic-to-cos.sh
+    docker_image: l2fprod/bxshell:latest
+
+- name: '4'
   worker: null
   inputs:
   - type: job
@@ -80,7 +106,7 @@ stages:
   permission:
     execute: TOOLCHAIN_ADMINS
   jobs:
-  - name: Build
+  - name: 4build
     type: builder
     curatedDockerImage: default
     artifact_dir: ''
@@ -90,7 +116,57 @@ stages:
       env
       ls
       ./vpc-migrate-from-classic/pipeline_build.sh \
-        030-capture-classic-to-cos.sh
+        040-import-image-to-vpc.sh 
+    docker_image: l2fprod/bxshell:latest
+
+- name: '5'
+  worker: null
+  inputs:
+  - type: job
+    stage: '4'
+    job: Build
+    dir_name: null
+  triggers:
+  - type: stage
+  permission:
+    execute: TOOLCHAIN_ADMINS
+  jobs:
+  - name: 5build
+    type: builder
+    curatedDockerImage: default
+    artifact_dir: ''
+    build_type: customimage
+    script: |+
+      #!/bin/bash
+      env
+      ls
+      ./vpc-migrate-from-classic/pipeline_build.sh \
+        050-provision-vpc-vsi.sh
+    docker_image: l2fprod/bxshell:latest
+
+- name: '6'
+  worker: null
+  inputs:
+  - type: job
+    stage: '5'
+    job: Build
+    dir_name: null
+  triggers:
+  - type: stage
+  permission:
+    execute: TOOLCHAIN_ADMINS
+  jobs:
+  - name: 6build
+    type: builder
+    curatedDockerImage: default
+    artifact_dir: ''
+    build_type: customimage
+    script: |+
+      #!/bin/bash
+      env
+      ls
+      ./vpc-migrate-from-classic/pipeline_build.sh \
+        060-cleanup.sh
     docker_image: l2fprod/bxshell:latest
 #hooks:
 #- enabled: true
