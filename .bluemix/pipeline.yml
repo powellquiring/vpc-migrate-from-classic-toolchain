@@ -44,7 +44,7 @@ properties:
   type: secure
 
 stages:
-- name: '012'
+- name: '012 Initialize and Create Initial VSI'
   inputs:
   - type: git
     branch: master
@@ -69,7 +69,7 @@ stages:
         020-create-classic-vm.sh
     docker_image: l2fprod/bxshell:latest
 
-- name: '3'
+- name: '3 Copy Initial VSI VHD to COS bucket'
   worker: null
   inputs:
   - type: job
@@ -94,7 +94,7 @@ stages:
         030-capture-classic-to-cos.sh
     docker_image: l2fprod/bxshell:latest
 
-- name: '4'
+- name: '4 Import VHD into VPC image'
   worker: null
   inputs:
   - type: job
@@ -119,7 +119,7 @@ stages:
         040-import-image-to-vpc.sh 
     docker_image: l2fprod/bxshell:latest
 
-- name: '5'
+- name: '5 Test VPC Image'
   worker: null
   inputs:
   - type: job
@@ -144,7 +144,7 @@ stages:
         050-provision-vpc-vsi.sh
     docker_image: l2fprod/bxshell:latest
 
-- name: '6'
+- name: '6 Clean up everything except: Image, COS and COS bucket'
   worker: null
   inputs:
   - type: job
