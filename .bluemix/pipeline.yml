@@ -54,7 +54,7 @@ stages:
   permission:
     execute: TOOLCHAIN_ADMINS
   jobs:
-  - name: '012build'
+  - name: 012build
     type: builder
     curatedDockerImage: default
     artifact_dir: ''
@@ -74,7 +74,7 @@ stages:
   inputs:
   - type: job
     stage: '012_Initialize_and_Create_Initial_VSI'
-    job: Build
+    job: 012build
     dir_name: null
   triggers:
   - type: stage
@@ -99,7 +99,7 @@ stages:
   inputs:
   - type: job
     stage: '3_Copy_Initial_VSI_VHD_to_COS_bucket'
-    job: Build
+    job: 3build
     dir_name: null
   triggers:
   - type: stage
@@ -124,7 +124,7 @@ stages:
   inputs:
   - type: job
     stage: '4_Import_VHD_into_VPC_image'
-    job: Build
+    job: 4build
     dir_name: null
   triggers:
   - type: stage
@@ -149,7 +149,7 @@ stages:
   inputs:
   - type: job
     stage: '5_Test_VPC_Image'
-    job: Build
+    job: 5build
     dir_name: null
   triggers:
   - type: stage
